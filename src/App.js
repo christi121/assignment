@@ -67,7 +67,7 @@ function App() {
         style={{ minHeight: '100vh' }}
       >
         <Grid item
-          sx={{ width: 300 }}>
+          sx={{ width: 340 }}>
           <Autocomplete
             id="location-select"
             freeSolo
@@ -75,16 +75,16 @@ function App() {
             clearOnEscape
             onBlur={handleBlur}
             value={selectedValue}
-            options={suggestions.map((option) => option.display_place)}
+            options={suggestions.map((option) => option.display_place.toUpperCase())}
             onChange={handleSelection}
             onInputChange={handleInputChange}
-            renderInput={(params) => <TextField {...params} label="Location" />}
+            renderInput={(params) => <TextField {...params} label="LOCATION" />}
           /><br></br>
           {
             searchHistory.length > 2 ?
-              <Stack direction={'row'} spacing={2} alignItems={"center"}>
-                <Button variant="filled" sx={{ color: "black", backgroundColor: "ButtonShadow", borderRadius: 1 }}>{searchHistory.at(0).name}</Button>
-                <Button variant="filled" sx={{ color: "black", backgroundColor: "ButtonShadow", borderRadius: 1 }}>{searchHistory.at(1).name}</Button>
+              <Stack direction={'row'} spacing={1} alignItems={"center"}>
+                <Button variant="filled" sx={{ color: "black", backgroundColor: "ButtonShadow", borderRadius: 1 }}>{searchHistory.at(0).name.toUpperCase()}</Button>
+                <Button variant="filled" sx={{ color: "black", backgroundColor: "ButtonShadow", borderRadius: 1 }}>{searchHistory.at(1).name.toUpperCase()}</Button>
                 <FormControl variant="filled" sx={{ backgroundColor: "ButtonShadow", minWidth: 110 }} size="small">
                   <InputLabel id="more-loc" sx={{ color: "black" }}>{searchHistory.length - 2} MORE</InputLabel>
                   <Select
@@ -95,7 +95,7 @@ function App() {
                   >
                     {
                       searchHistory.slice(2).map(loc => {
-                        return <MenuItem key={searchHistory.indexOf(loc)} value={loc.name}>{loc.name}</MenuItem>
+                        return <MenuItem key={searchHistory.indexOf(loc)} value={loc.name}>{loc.name.toUpperCase()}</MenuItem>
                       })}
                   </Select>
                 </FormControl>
